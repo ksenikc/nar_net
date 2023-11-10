@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+
+{% block content %}
+    <h1>Активные заявления</h1>
+    {% if tasks %}
+        {% for elem in tasks %}
+        <div class="write">
+            <p><span>Номер машины:</span>{{ elem.number }}</p>
+            <p><span>Автомобиль:</span>{{ elem.comment }}</p>
+            <p><span>Статус:</span>{{ elem.status }}</p>
+            <a href="{% url 'task-delete' elem.id %}" class="btn btn-warning">Удалить</a>
+            <a href="{% url 'task-update' elem.id %}" class="btn btn-info">Редактировать</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>У нас нет заявлений</p>
+    {% endif %}
+{% endblock %}
